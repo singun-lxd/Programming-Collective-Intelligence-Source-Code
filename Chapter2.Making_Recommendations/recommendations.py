@@ -168,14 +168,17 @@ def getRecommendedItems(prefs,itemMatch,user):
 def loadMovieLens(path='movielens'):
   # Get movie titles
   movies={}
+  # fix format to csv
   for line in open(path+'/movies.csv'):
     (id,title)=line.split(',')[0:2]
     movies[id]=title
 
   # Load data
   prefs={}
+  # fix format to csv
   for line in open(path+'/ratings.csv'):
     (user,movieid,rating,ts)=line.split(',')
+    # fix first line problem
     try:
       rate=float(rating)
     except ValueError:
